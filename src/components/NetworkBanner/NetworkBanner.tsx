@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useNetworkInfo } from '../../hooks';
-import { Text, View } from 'react-native';
+import { SafeAreaView, Text } from 'react-native';
+import { styles } from './styles';
 
-export const NetworkBanner = () => {
+export const NetworkBanner: FC = () => {
   const isConnected = useNetworkInfo();
 
-  return isConnected ? (
-    <View style={{ width: '100%' }}>
+  return !isConnected ? (
+    <SafeAreaView style={styles.container}>
       <Text>You are currently disconnected</Text>
-    </View>
+    </SafeAreaView>
   ) : null;
 };

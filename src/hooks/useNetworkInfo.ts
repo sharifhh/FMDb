@@ -6,7 +6,7 @@ export const useNetworkInfo = () => {
 
   useEffect(() => {
     return NetInfo.addEventListener(state => {
-      setConnected((state.isConnected && state.isInternetReachable) || false);
+      setConnected(state.isConnected || false);
     });
   });
 

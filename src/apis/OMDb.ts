@@ -24,11 +24,13 @@ const searchByTitle: (
       s: searchValue,
     })
     .then(response =>
-      (response.data?.Search ?? []).map(searchResult => ({
-        id: searchResult.imdbID,
-        name: searchResult.Title,
-        poster: searchResult.Poster,
-      })),
+      (response.data?.Search ?? [])
+        .map(searchResult => ({
+          id: searchResult.imdbID,
+          name: searchResult.Title,
+          poster: searchResult.Poster,
+        }))
+        .filter(title => title.poster !== 'N/A'),
     );
 };
 

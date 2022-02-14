@@ -12,17 +12,20 @@ import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import { NetworkBanner } from './components';
 import { MainRoute } from './routes';
-import { store } from './store';
+import { store, persistor } from './store';
 
 const App = () => {
   return (
     <SafeAreaProvider>
       <NavigationContainer>
         <Provider store={store}>
-          <NetworkBanner />
-          <MainRoute />
+          <PersistGate loading={null} persistor={persistor}>
+            <NetworkBanner />
+            <MainRoute />
+          </PersistGate>
         </Provider>
       </NavigationContainer>
     </SafeAreaProvider>

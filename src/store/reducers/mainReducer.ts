@@ -1,37 +1,34 @@
 import { ACTIONS } from '../actions';
 
 interface MainState {
-  isLoading: boolean;
   favorites: string[];
   hidden: string[];
 }
 
 const initialState: MainState = {
-  isLoading: true,
   favorites: [],
   hidden: [],
 };
 
-export const mainReducer = (state = initialState, action): MainState => {
+export const mainReducer = (state = initialState, action: any): MainState => {
   switch (action.type) {
-    case ACTIONS.PERSIST_COMPLETE:
+    case ACTIONS.RESET_STATE:
       return {
-        ...state,
-        isLoading: false,
+        ...initialState,
       };
     case ACTIONS.ADD_TO_FAVORITE:
       return {
-        ...initialState,
+        ...state,
         favorites: [...state.favorites, action.payload],
       };
     case ACTIONS.REMOVE_FROM_FAVORITE:
       return {
-        ...initialState,
+        ...state,
         favorites: state.favorites.filter(id => id !== action.payload),
       };
     case ACTIONS.HIDE_TITLE:
       return {
-        ...initialState,
+        ...state,
         favorites: state.favorites.filter(id => id !== action.payload),
         hidden: [...state.hidden, action.payload],
       };
