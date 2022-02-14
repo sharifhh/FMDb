@@ -32,6 +32,7 @@ export const mainReducer = (state = initialState, action): MainState => {
     case ACTIONS.HIDE_TITLE:
       return {
         ...initialState,
+        favorites: state.favorites.filter(id => id !== action.payload),
         hidden: [...state.hidden, action.payload],
       };
     default:
